@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Job Eligibility Checker</title>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Job Eligibility Checker</h1>
+        <div class="inputdiv">
+            <label>
+                <input type="radio" name="education" value="Illiterate"> Illiterate
+            </label><br>
+            <label>
+                <input type="radio" name="education" value="High School"> High School
+            </label><br>
+            <label>
+                <input type="radio" name="education" value="UG"> UG
+            </label><br>
+            <label>
+                <input type="radio" name="education" value="PG"> PG
+            </label><br>
+            <label>
+                <input type="radio" name="education" value="Doctorate"> Doctorate
+            </label><br>
+        </div>
+        <div>
+            <button type="button" onclick="checkEligibility()">Check Eligibility</button>
+        </div>
+        <div id="result">
+        </div>
+    </div>
+    <script>
+        function checkEligibility() {
+            const educationLevels = document.getElementsByName('education');
+            let selectedEducation = '';
+
+            for (const level of educationLevels) {
+                if (level.checked) {
+                    selectedEducation = level.value;
+                    break;
+                }
+            }
+            let resultMessage = '';
+            switch (selectedEducation) {
+                case 'High School':
+                case 'UG':
+                    resultMessage = 'You are eligible for the job.';
+                    break;
+                case 'Illiterate':
+                case 'PG':
+                case 'Doctorate':
+                    resultMessage = 'You are not eligible for the job.';
+                    break;
+                default:
+                    resultMessage = 'Please select your education level.';
+            }
+            document.getElementById('result').innerText = resultMessage;
+        }
+    </script>
+</body>
+</html>

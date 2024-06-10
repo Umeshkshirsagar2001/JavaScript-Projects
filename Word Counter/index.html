@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Word Counter</title>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Word Counter</h1>
+        <textarea id="input" maxlength="50" rows="3" cols="40">
+        </textarea>
+        <div>
+            <button type="button" onclick="count()">Count Words</button>
+        </div>
+        <div id="result"></div>
+     <script>
+        function count() {
+        
+            let words = document.getElementById("input").value;
+            let count = 0;
+            // Split the words on each space character 
+            let split = words.split(' ');
+ 
+            // Loop through the words and increase the counter when each split word is not empty
+            for (let i = 0; i < split.length; i++) {
+                if (split[i] != "") {
+                    count += 1;
+                }
+            }
+            // Display it as output
+            document.getElementById("result").innerHTML = count;
+        }
+    </script>
+</body>
+</html>

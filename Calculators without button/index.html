@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculator</title>
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Calculator</h1>
+        <input type="text" id="input" placeholder="Enter expression">
+        <div>
+            <button type="button" onclick="calculate()">Calculate</button>
+        </div>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function calculate() {
+            const input = document.getElementById("input").value;
+            const operator = input.match(/[+\-*/]/); // Find the operator using regular expression
+            if (!operator) {
+                document.getElementById("result").innerHTML = "Invalid format. Use operand1 operator operand2.";
+                return;
+            }
+            const [operand1, operand2] = input.split(operator[0]); //split the operators
+
+            const num1 = parseFloat(operand1);
+            const num2 = parseFloat(operand2);
+
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById("result").innerHTML = "Invalid numbers. Please enter valid operands.";
+                return;
+            }
+
+            let result;
+            switch (operator[0]) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    result = num1 / num2;
+                    break;
+                default:
+                    result = "Unknown operator";
+            }
+            document.getElementById("result").innerHTML = result;
+        }
+    </script>
+</body>
+</html>
